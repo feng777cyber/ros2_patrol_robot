@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="feng_robot">
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/base.urdf.xacro"/>
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/sensor/laser.urdf.xacro"/>
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/sensor/camera.urdf.xacro"/>
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/sensor/imu.urdf.xacro"/>
+    <!-- the actuator part -->
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/actuator/wheel.urdf.xacro"/>
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/actuator/caster.urdf.xacro"/>
+<!-- plugin -->
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/plugins/gazebo_control_plugin.xacro"/>
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/plugins/gazebo_sensor_plugin.xacro"/>
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/fengbot.ros2_control.xacro"/>
+    <!-- the sensor part -->
+    <xacro:base_xacro length="0.12" radius="0.10" />
+    <xacro:imu_xacro xyz="0.0 0.0 0.02" />
+    <xacro:camera_xacro xyz="0.10 0.0 0.075" />
+    <xacro:laser_xacro xyz="0.0 0.0 0.10" />
+    <!-- the actuator part -->
+    <xacro:wheel_xacro wheel_name="left_wheel" xyz="0.0 0.10 -0.06" />
+    <xacro:wheel_xacro wheel_name="right_wheel" xyz="0.0 -0.10 -0.06" />
+    <xacro:caster_xacro caster_name="front_castaster" xyz="0.08 0.00 -0.076" />
+    <xacro:caster_xacro caster_name="back_castaster" xyz="-0.08 0.00 -0.076" />
+
+    <!-- <xacro:gazebo_control_plugin /> -->
+    <xacro:gazebo_sensor_plugin /> 
+    <xacro:fengbot_ros2_control />
+
+    
+
+
+
+
+</robot>

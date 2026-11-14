@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find fengbot_description)/URDF/fengbot/common_inertia.xacro"/>
+    <xacro:macro name='base_xacro' params='length radius'>
+        <!-- 机器人身体 -->
+        <link name="base_footprint">
+
+        </link>
+        <link name="base_link">
+            <!---配件描述 -->
+            <visual>
+                <!-- 偏移and旋转 -->
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+                <!-- 形状描述 -->
+                <geometry>
+                    <!-- 圆柱体 -->
+                    <cylinder radius="${radius}" length="${length}" />
+
+                </geometry>
+                <!-- 材质描述 -->
+                <material name="white">
+                    <color rgba="1.0 1.0 1.0 0.5" />
+                </material>
+            </visual>
+            <collision>
+                <!-- 偏移and旋转 -->
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+                <!-- 形状描述 -->
+                <geometry>
+                    <!-- 圆柱体 -->
+                    <cylinder radius="${radius}" length="${length}" />
+
+                </geometry>
+                <!-- 材质描述 -->
+                <material name="white">
+                    <color rgba="1.0 1.0 1.0 0.5" />
+                </material>
+                
+
+            </collision>
+            <!-- 惯性描述 -->
+            <xacro:cylinder_inertia m="1.0" r="${radius}" h="${length}" />
+
+
+
+        </link>
+        
+        <!-- 单位是以米为单位的 -->
+        <joint name="joint_name" type="fixed">
+            <origin xyz="0.0 0.0 ${length/2.0+0.032-0.001}" />
+            <parent link="base_footprint" />
+            <child link="base_link" />
+        </joint>
+    </xacro:macro>
+
+</robot>
